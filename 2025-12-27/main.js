@@ -1,5 +1,5 @@
-//Phần 1: Khai báo biến & console.log (cơ bản)
-//1. Khởi tạo 3 biến:
+// Part 1: Variable declaration & console.log (basic)
+// 1. Initialize 3 variables:
 const name = "Nguyen Duc Hieu";
 const age = 25;
 const isStudent = true;
@@ -8,7 +8,7 @@ console.log(`Name: ${name}`);
 console.log(`Age: ${age}`);
 console.log(`Is student: ${isStudent}`);
 
-// 2. Khởi tạo và thay đổi giá trị
+// 2. Initialize and change values
 let a = 5;
 let b = 10;
 a = 8;
@@ -16,23 +16,27 @@ b = 13;
 
 console.log(a, b);
 
-// 🟢 Phần 2: const / let / var
-// const với let khác nhau ở điểm:
-//     - let có thể gắn lại giá trị.
-//     _ const là hằng số và k thể gán lại giá trị. Nếu cố tình gắn lại giá trị thì sẽ bị lỗi.
+// 🟢 Part 2: const / let / var
+// Difference between const and let:
+//     - let can be reassigned.
+//     - const is a constant and cannot be reassigned.
+//       If you try to reassign it, an error will occur.
+//When should const be used?
+//Use const when you want the variable’s value not to be changed and to remain unique, for example when defining an id or a name.
 
-// Đoạn code sau đúng hay sai? Giải thích:
+// Is the following code correct or incorrect? Explain:
 // const x = 10
 // x = 20
-// - Đoạn code trên sai vì: const là hằng số và k thể gán lại giá trị.
+// - The code above is incorrect because const is a constant
+//   and cannot be reassigned.
 
-// 🟡 Phần 3: Data type
-// "100"    String
-// 100      Number
-// true     Boolean
-// [1, 2, 3]    Array -> typeof ->> Object
-// { name: "An"; age: 20}   Object
-// null     Object
+// 🟡 Part 3: Data types
+// "100"        String
+// 100          Number
+// true         Boolean
+// [1, 2, 3]    Array -> typeof -> Object
+// { name: "An", age: 20 }   Object
+// null         Object
 // undefined    Undefined
 
 const student = {
@@ -43,15 +47,15 @@ const student = {
 
 console.log(student);
 
-// 🟡 Phần 4: Ép kiểu (Type casting)
+// 🟡 Part 4: Type casting
 let str = "1000";
-console.log(Number(str));
+console.log(Number(str), typeof str);
 let number = 1000;
-console.log(String(number));
+console.log(String(number), typeof number);
 let bool = true;
-console.log(String(bool));
+console.log(String(bool), typeof bool);
 
-// 🔵 Phần 5: Truthy / Falsy (tư duy logic)
+// 🔵 Part 5: Truthy / Falsy (logical thinking)
 // Boolean(0)           false
 // Boolean(1)           true
 // Boolean("")          false
@@ -59,12 +63,13 @@ console.log(String(bool));
 // Boolean(null)        false
 // Boolean([])          true
 
-// 🔵 Phần 6: Array & bộ nhớ (liên hệ sơ đồ RAM)
+// 🔵 Part 6: Array & memory (related to RAM diagram)
 const numbers = [4, 3, 1, 5, 1];
 console.log(numbers[0]);
 console.log(numbers[numbers.length - 1]);
 
-// Vì sao khi gán : const a = numbers lại liên quan đến cùng vùng nhớ
-// -> Trong JS Array là kiểu tham chiếu (reference tpye) nên a và numbers đùng chung vùng nhớ
-// Biến k chứa dự liệu mảng mà biến chỉ chứa địa chỉ vùng nhớ trỏ tơi mảng trong RAM
-//
+// Why does assigning: const a = numbers refer to the same memory?
+// -> In JavaScript, arrays are reference types,
+//    so a and numbers point to the same memory location.
+//    Variables do not store the array data directly,
+//    they store the memory address that points to the array in RAM.
