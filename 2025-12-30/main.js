@@ -19,7 +19,7 @@ let y = 2;
 console.log(x + y);
 console.log(x - y);
 console.log(x * "3");
-console.log("hello" / y);
+console.log("hello" - y);
 // Answer:
 // 1: In JavaScript, when adding a string and a number using the + operator, the engine performs implicit type coercion by converting the number to a string using toString().
 // After coercion, both operands are strings, so the operation becomes string concatenation.
@@ -68,11 +68,8 @@ myLaptop.brand = "Apple";
 const mySpec = laptop.spec;
 mySpec.ram = "16GB";
 
-// laptop.brand = "Apple"
-// laptop.spec.ram = "16GB"
-
-console.log(laptop.brand);
-console.log(laptop.spec.ram);
+console.log(laptop.brand); // "Apple"
+console.log(laptop.spec.ram); // "16GB"
 
 // Answer:
 // When myLaptop and mySpec are assigned from the laptop object, they copy the same register address.
