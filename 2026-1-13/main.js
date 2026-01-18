@@ -29,7 +29,7 @@ const orders = [
     },
 ];
 
-const getTopRevenue = (arr, orders) => {
+const findTopRevenue = (arr, orders) => {
     if (!Array.isArray(arr) || !Array.isArray(orders)) {
         return "Invalid input";
     }
@@ -69,16 +69,11 @@ const getTopRevenue = (arr, orders) => {
     }
 
     const name = productNameMap[topProductId];
-    const totalPrice = revenueMap[topProductId];
-    const fakeConsole = `The product with the top revenue was the ${name}, with a total of ${totalPrice}.`;
 
-    return { name, totalPrice, fakeConsole };
+    return name;
 };
 
-console.log(getTopRevenue(products, [])); // Invalid input
-console.log(getTopRevenue(products, orders).name); // Iphone
-console.log(getTopRevenue(products, orders).totalPrice); // 6000
-console.log(getTopRevenue(products, orders).fakeConsole); // The product with the top revenue was the iPhone, with a total of 6000.
+console.log(findTopRevenue(products, orders));
 
 // After consulting the optimization method from chatgpt
 // for (const order of orders) {
