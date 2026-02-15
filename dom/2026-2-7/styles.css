@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 1.6rem;
+    user-select: none;
+    margin-bottom: 30px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+/* Navigation */
+.list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 30px 0;
+}
+
+.link {
+    display: block;
+    padding: 10px;
+
+    background: #999;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #444;
+}
+
+/* To Top Back */
+.to-top-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 40px;
+    height: 40px;
+
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+.to-top-btn.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.to-top {
+    width: 100%;
+    height: 100%;
+}
+
+/* Task */
+.task {
+    width: calc(50% - 16px);
+    height: 300px;
+    padding: 10px;
+    justify-items: center;
+    overflow: auto;
+
+    border: 1px solid #777;
+    border-radius: 8px;
+}
+
+.title {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+}
+
+.text {
+    margin-top: 10px;
+}
+
+.content-6 .text span {
+    margin-left: 8px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.content-7 .text span,
+.content-9 .text span {
+    flex: 1;
+}
+
+.content-9 {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.content-9 div {
+    text-align: center;
+}
+
+.content-9 .empty-message {
+    margin-top: 5px;
+    text-align: center;
+    list-style: none;
+    color: #666;
+}
+
+.content-9 button {
+    outline: none;
+    border: none;
+    padding: 4px;
+    border-radius: 4px;
+    background: #999;
+
+    cursor: pointer;
+}
+
+.content-9 .btn-done {
+    background: yellow;
+    margin-right: 4px;
+}
+
+.content-9 ul {
+    overflow: auto;
+    height: 180px;
+}
+
+.content-9 li.done > .action-btn .btn-done {
+    background: green;
+}
+
+.content-9 .btn-delete {
+    background: red;
+}
+
+.content-9 .wrap-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    margin-top: 8px;
+}
+
+.content-9 .search {
+    width: 50%;
+}
+
+.content-9 .search input {
+    width: 100%;
+}
+
+.content-9 .checkbox {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* state */
+.task .state,
+.content-9 li.done > span {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+/* active color */
+.content-8 .text.active {
+    background: green;
+}

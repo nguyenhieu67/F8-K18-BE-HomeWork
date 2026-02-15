@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <main></main>
+        <script>
+            // const headers = [
+            //     "code",
+            //     "customer",
+            //     "product",
+            //     "amount",
+            //     "status",
+            //     "action",
+            // ];
+
+            const newHeaders = [
+                {
+                    key: "code",
+                    text: "Mã",
+                },
+                {
+                    key: "customer",
+                    text: "Khách Hàng",
+                },
+                {
+                    key: "product",
+                    text: "Sản phẩm",
+                },
+                {
+                    key: "amount",
+                    text: "Số lượng",
+                },
+                {
+                    key: "status",
+                    text: "Trạng thái",
+                    textAlign: "right",
+                },
+                {
+                    key: "action",
+                    text: "Hành động",
+                    textAlign: "center",
+                },
+            ];
+
+            const datas = [
+                {
+                    id: 1,
+                    code: "001",
+                    customer: "Tran Xuan Bang",
+                    product: "Laptop",
+                    amount: 30000000,
+                    status: "OK",
+                },
+                {
+                    id: 2,
+                    code: "002",
+                    customer: "Tran Xuan Son",
+                    product: "Iphone 4",
+                    amount: 20000000,
+                    status: "NG",
+                },
+                {
+                    id: 3,
+                    code: "003",
+                    customer: "Nguyen Xuan Hoang",
+                    product: "Nokia 2",
+                    amount: 10000000,
+                    status: "OK",
+                },
+            ];
+
+            function createHeaderTable() {
+                const thead = document.createElement("thead");
+                const tr = document.createElement("tr");
+                // headers.forEach((header) => {
+                //     const th = document.createElement("th");
+                //     th.textContent = header;
+                //     tr.append(th);
+                // });
+                newHeaders.forEach((header) => {
+                    const th = document.createElement("th");
+                    th.textContent = header.text;
+                    th.style.textAlign = header.textAlign;
+                    tr.append(th);
+                });
+
+                thead.append(tr);
+                return thead;
+            }
+
+            function createBodyTable() {
+                const tbody = document.createElement("tbody");
+
+                datas.forEach((data) => {
+                    const tr = document.createElement("tr");
+                    // Object.keys(data).forEach((key) => {
+                    //     // if (headers.includes(key)) {
+                    //     //     const td = document.createElement("td");
+                    //     //     td.textContent = data[key];
+                    //     //     tr.append(td);
+                    //     // }
+                    //     newHeaders.forEach((header) => {
+                    //         if (header.key.includes(key)) {
+                    //             const td = document.createElement("td");
+                    //             td.textContent = data[key];
+                    //             tr.append(td);
+                    //         }
+                    //     });
+
+                    // });
+                    newHeaders.forEach((header) => {
+                        const td = document.createElement("td");
+                        if (header.key === "action") {
+                            td.innerHTML = `<button>edit</button> <button>delete</button> `;
+                            td.style.textAlign = header.textAlign;
+                        } else {
+                            const cell = data[header.key];
+                            console.log(cell);
+
+                            if (cell && typeof cell === "object") {
+                                td.textContent = cell.value ?? "";
+                                td.style.textAlign =
+                                    cell.textAlign ?? header.textAlign;
+                            } else {
+                                td.textContent = cell ?? "";
+                                td.style.textAlign = header.textAlign;
+                            }
+                        }
+
+                        tr.append(td);
+                    });
+
+                    tbody.appendChild(tr);
+                });
+                return tbody;
+            }
+
+            function createTable() {
+                const main = document.querySelector("main");
+
+                const table = document.createElement("table");
+                table.border = "1";
+                table.cellSpacing = "0";
+                table.style.width = "100%";
+
+                const thead = createHeaderTable();
+                table.append(thead);
+
+                const tbody = createBodyTable();
+                table.appendChild(tbody);
+                main.appendChild(table);
+            }
+
+            createTable();
+        </script>
+    </body>
+</html>

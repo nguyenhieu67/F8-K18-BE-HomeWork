@@ -1,9 +1,9 @@
-import { ClassRoom } from "./ClassRoom";
+import { ClassRoom, ClassRoomI } from "./ClassRoom";
 import { Student } from "./Student";
 import { TeachingAssistant } from "./TeachingAssistant";
 
 // Create classRoom
-const typeScriptClass = new ClassRoom("TypeScript basic");
+const typeScriptClass: ClassRoomI = new ClassRoom("TypeScript basic");
 
 // Create student
 const nguyenHieu = new Student("Nguyen Duc Hieu");
