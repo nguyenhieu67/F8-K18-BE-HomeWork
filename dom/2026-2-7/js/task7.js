@@ -18,10 +18,24 @@ export function handleToggleComplete() {
 
         const li = document.createElement("li");
         li.className = "text";
-        li.style.display = "flex";
-        li.innerHTML = `<span>${value}</span> <button class="delete">Delete</button>`;
+        Object.assign(li.style, {
+            display: "flex",
+            justifyContent: "space-between",
+        });
+        // Use textContent to protect against XSS.
+        li.textContent = value;
 
+        // create button
+        const btn = document.createElement("button");
+        btn.className = "delete";
+        btn.textContent = "Delete";
+
+        // Using innerHTML makes you vulnerable to XSS, so use textContent instead.
+        // li.innerHTML = `<span>${value}</span> <button class="delete">Delete</button>`;
+
+        li.append(btn);
         ul.append(li);
+
         // Reset value
         input.value = "";
         input.focus();

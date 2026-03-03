@@ -1,15 +1,17 @@
 // Task 9
-const listItem = document.querySelector(".content-9 ul");
+const taskList = document.querySelector(".content-9 ul");
+const btn = document.querySelector(".content-9 .btn");
+const input = document.querySelector(".content-9 input");
 const searchInput = document.querySelector(".search input");
 const doneInput = document.querySelector(".checkbox input");
 
-function handleFilterTodo() {
+function handleFilterTask() {
     const keyword = searchInput.value.trim().toLowerCase();
     const isChecked = doneInput.checked;
-    const items = listItem.querySelectorAll("li");
+    const items = taskList.querySelectorAll("li");
 
     items.forEach((item) => {
-        const text = item.querySelector("span").textContent.toLowerCase();
+        const text = item.textContent.toLowerCase();
         const isMatchSearch = text.includes(keyword);
         const isMatchDone = !isChecked || item.classList.contains("done");
 
@@ -23,19 +25,49 @@ function handleAction(e) {
 
     if (e.target.classList.contains("btn-done")) {
         item.classList.toggle("done");
-        handleFilterTodo();
+        handleFilterTask();
     }
 
     if (e.target.classList.contains("btn-delete")) {
-        item.remove();
-        handleFilterTodo();
+        if (
+            confirm(
+                `Are you sure you want to delete ${item.childNodes[0].childNodes[0].data}?`,
+            )
+        ) {
+            item.remove();
+            handleFilterTask();
+        }
     }
 }
 
-export function renderTodo() {
-    const btn = document.querySelector(".content-9 .btn");
-    const input = document.querySelector(".content-9 input");
+// Add task
+function addTask() {
+    const value = input.value.trim();
+    if (!value) return;
 
+    const li = document.createElement("li");
+    li.className = "text";
+    Object.assign(li.style, {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+    });
+
+    const span = document.createElement("span");
+    span.textContent = value;
+
+    // create button
+    const div = document.createElement("div");
+    div.className = "action-btn";
+    div.innerHTML = `
+            <button class="btn-done">Done</button>
+            <button class="btn-delete">Delete</button>`;
+
+    li.append(span, div);
+    taskList.append(li);
+}
+
+export function renderTask() {
     // fix first space
     input.addEventListener("input", () => {
         if (input.value.startsWith(" ")) {
@@ -44,30 +76,23 @@ export function renderTodo() {
         }
     });
 
-    // Add task
     btn.addEventListener("click", () => {
-        const value = input.value.trim();
-        if (!value) return;
-
-        const li = document.createElement("li");
-        li.className = "text";
-        li.style.display = "flex";
-        li.style.alignItems = "center";
-
-        li.innerHTML = `<span>${value}</span>
-        <div class="action-btn">
-            <button class="btn-done">Done</button>
-            <button class="btn-delete">Delete</button>
-        </div>`;
-
-        listItem.append(li);
-
+        addTask();
         // Reset value
         input.value = "";
         input.focus();
     });
+
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            addTask();
+            // Reset value
+            input.value = "";
+            input.focus();
+        }
+    });
 }
 
-listItem.addEventListener("click", handleAction);
-searchInput.addEventListener("input", handleFilterTodo);
-doneInput.addEventListener("change", handleFilterTodo);
+taskList.addEventListener("click", handleAction);
+searchInput.addEventListener("input", handleFilterTask);
+doneInput.addEventListener("change", handleFilterTask);

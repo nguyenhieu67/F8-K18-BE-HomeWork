@@ -6,7 +6,7 @@ import { toggleTextColor } from "./task5.js";
 import { handleDeleteItem } from "./task6.js";
 import { handleToggleComplete } from "./task7.js";
 import { handleSelectItem } from "./task8.js";
-import { renderTodo } from "./task9.js";
+import { renderTask } from "./task9.js";
 
 const taskList = [
     "Task 1",
@@ -75,4 +75,4 @@ toggleTextColor();
 handleDeleteItem();
 handleToggleComplete();
 handleSelectItem();
-renderTodo();
+renderTask();
