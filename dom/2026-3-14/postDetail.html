@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <title>Post Detail</title>
+        <style></style>
+    </head>
+    <body class="p-10">
+        <button
+            onclick="window.history.back()"
+            class="p-2 bg-cyan-500 rounded-full w-25 text-white cursor-pointer"
+        >
+            Back
+        </button>
+        <h1 class="text-center text-4xl mb-5">Post Detail</h1>
+        <div id="detail-content">Loading...</div>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+            const content = document.getElementById("detail-content");
+
+            // Lấy ID từ URL
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get("id");
+
+            const getDetail = async () => {
+                try {
+                    const response = await axios.get(
+                        `https://dummyjson.com/posts/${id}`,
+                    );
+                    const post = response.data;
+
+                    content.innerHTML = `
+                    <div class="text-center">
+                        <div class="flex justify-center">
+                            <img
+                                src="https://picsum.photos/500/300?random=${post.id}"
+                                alt="${post.title}"
+                                class="mt-4 "
+                            />
+                        </div>
+                        <h1 class="text-3xl font-bold mt-3">${post.title}</h1>
+                        <p class="mt-4 text-gray-700">${post.body}</p>
+
+                        <div class="flex justify-around items-center mt-4">
+                            <div class="flex gap-4">Tags: ${post.tags.map((tag) => `<span class="uppercase">${tag}</span>`).join("")}</div>
+                            <div class="">Views: ${post.views}</div>
+                        </div>
+                    </div>
+                `;
+                    console.log("Chuyển hướng thành công bài viết: ", post);
+                } catch (error) {
+                    content.innerHTML = "Không tìm thấy bài viết";
+                }
+            };
+            getDetail();
+        </script>
+    </body>
+</html>
